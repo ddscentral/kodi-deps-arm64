@@ -75,8 +75,8 @@ Param(
   [switch] $Rebuild = $false,
   [switch] $Desktop = $false,
   [switch] $App = $false,
-  [ValidateSet( 'arm', 'win32', 'x64' )]
-  [string[]] $Platforms = @( 'arm', 'win32', 'x64' ),
+  [ValidateSet( 'arm', 'arm64', 'win32', 'x64' )]
+  [string[]] $Platforms = @( 'arm', 'arm64', 'win32', 'x64' ),
   [ValidateSet('10.0.17763.0', '10.0.18362.0')]
   [string] $SdkVersion = '10.0.18362.0',
   [ValidateSet(15, 16)]
@@ -115,7 +115,7 @@ if ($GenerateProjects) {
   foreach ($platform in $platforms) {
     if ($Desktop -and ($platform -ne 'arm')) {
       $path = "$PsScriptRoot\Build\$platform"
-      cmake -G "Visual Studio $VsVersion" -A $platform -Thost=x64 -DPATCH="C:\Program Files\Git\usr\bin\patch.exe" -S $PsScriptRoot -B $path
+      cmake -G "Visual Studio $VsVersion" -A $platform -Thost=x64 -DCMAKE_SYSTEM_VERSION="$SdkVersion" -DPATCH="C:\Program Files\Git\usr\bin\patch.exe" -S $PsScriptRoot -B $path
     }
 
     if ($App) {
