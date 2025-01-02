@@ -1,4 +1,4 @@
-# Kodi Dependencies for Windows (32 and 64 Bit)
+# Kodi Dependencies for Windows (32-bit, 64 Bit and ARM64)
 
 ## Requirements ##
 
