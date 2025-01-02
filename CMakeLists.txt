@@ -37,6 +37,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL WindowsStore)
     set(ARCH "win10-${ARCH}")
 endif()
 
+if(ARCH STREQUAL arm64)
+	set(ADDITIONAL_ARGS "-DCMAKE_SYSTEM_VERSION=${CMAKE_SYSTEM_VERSION}")
+endif()
+
+
 if(NOT PREFIX)
     set(PREFIX "${CMAKE_SOURCE_DIR}/package/${ARCH}")
 endif()
